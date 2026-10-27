@@ -1,0 +1,43 @@
+Table commodities {
+  id int [pk]
+  name varchar        // Золото, Медь, Алюминий
+  ticker varchar      // GLDRUB_TOM, COPPER, ALUM
+  source varchar      // moex_iss, moex_csv
+  unit varchar        // gram, ton
+  currency varchar    // RUB, USD
+}
+
+Table suppliers {
+  id int [pk]
+  name varchar
+}
+
+Table market_quotes {
+  id int [pk]
+  commodity_id int [ref: > commodities.id]
+  trade_date date
+  close_price numeric(14,4)
+  indexes {
+    (commodity_id, trade_date) [unique]
+  }
+}
+
+Table fx_rates {
+  id int [pk]
+  currency varchar    // USD
+  rate_date date
+  rate numeric(12,4)  // руб. за 1 единицу валюты
+  indexes {
+    (currency, rate_date) [unique]
+  }
+}
+
+Table purchases {
+  id int [pk]
+  purchase_date date
+  commodity_id int [ref: > commodities.id]
+  supplier_id int [ref: > suppliers.id]
+  quantity numeric(14,3)
+  unit_price numeric(14,4)
+  currency varchar    // RUB
+}
