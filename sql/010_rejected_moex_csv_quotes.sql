@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS raw.rejected_moex_csv_quotes (
+    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    raw_quote_id INTEGER UNIQUE REFERENCES raw.moex_csv_quotes(id),
+    reason TEXT NOT NULL,
+    rejected_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
