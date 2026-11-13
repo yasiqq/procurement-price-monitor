@@ -1,8 +1,0 @@
-CREATE TABLE IF NOT EXISTS raw.market_quotes (
-    id INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    ticker TEXT,
-    trade_date TEXT,
-    price TEXT,
-    source TEXT,
-    loaded_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
