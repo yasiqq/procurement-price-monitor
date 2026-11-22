@@ -1,4 +1,5 @@
 from db import get_connection
+from transform_moex_csv import execute_query
 
 query = """
     INSERT INTO core.currency_rates (rate_date, currency_code, rate_rub)
